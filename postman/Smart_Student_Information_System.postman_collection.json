@@ -1,0 +1,237 @@
+{
+  "info": {
+    "_postman_id": "49a2f62b-e39d-437f-9be1-0b5a8ba4bc58",
+    "name": "Smart Student Information System",
+    "description": "Comprehensive Postman test collection for REST APIs and SOAP Web Services in the Smart Student Information System.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "REST API - Students",
+      "item": [
+        {
+          "name": "1. Create Student - Valid Data (201 Created)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pooja Hegde\",\n  \"email\": \"pooja.hegde@university.edu\",\n  \"phone\": \"9876501234\",\n  \"department\": \"Computer Science\",\n  \"year\": 2,\n  \"dateOfBirth\": \"2004-11-12\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "2. Create Student - Missing Name (400 Bad Request)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"invalid.test@university.edu\",\n  \"phone\": \"9876501234\",\n  \"department\": \"Computer Science\",\n  \"year\": 2,\n  \"dateOfBirth\": \"2004-11-12\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "3. Create Student - Invalid Email (400 Bad Request)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kavita Raman\",\n  \"email\": \"not-a-valid-email\",\n  \"phone\": \"9876501234\",\n  \"department\": \"Electrical\",\n  \"year\": 1,\n  \"dateOfBirth\": \"2005-06-15\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "4. Get All Students (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "5. Get Student By ID - Valid ID 1 (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "1"]
+            }
+          }
+        },
+        {
+          "name": "6. Get Student By ID - Non-existent ID 999 (404 Not Found)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "999"]
+            }
+          }
+        },
+        {
+          "name": "7. Update Student - Valid ID 1 (200 OK)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Aarav Sharma Updated\",\n  \"email\": \"aarav.sharma@university.edu\",\n  \"phone\": \"9876543210\",\n  \"department\": \"Artificial Intelligence\",\n  \"year\": 4,\n  \"dateOfBirth\": \"2003-05-14\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "1"]
+            }
+          }
+        },
+        {
+          "name": "8. Filter Students By Department (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/department/Computer Science",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "department", "Computer Science"]
+            }
+          }
+        },
+        {
+          "name": "9. Get Student Academic Results By Student ID (200 OK)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/1/results",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "1", "results"]
+            }
+          }
+        },
+        {
+          "name": "10. Delete Student By ID (200 OK)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/5",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "students", "5"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SOAP Web Services",
+      "item": [
+        {
+          "name": "1. SOAP - Get Student Result (Student ID 1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+              },
+              {
+                "key": "SOAPAction",
+                "value": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:soap=\"http://www.smartstudent.com/sis/soap\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <soap:getStudentResultRequest>\n         <soap:studentId>1</soap:studentId>\n      </soap:getStudentResultRequest>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+              "raw": "http://localhost:8080/ws",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["ws"]
+            }
+          }
+        },
+        {
+          "name": "2. SOAP - Get WSDL Document",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/ws/studentResults.wsdl",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["ws", "studentResults.wsdl"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

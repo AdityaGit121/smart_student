@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.smartstudent.com/sis/soap"
+           targetNamespace="http://www.smartstudent.com/sis/soap"
+           elementFormDefault="qualified">
+
+    <!-- Request: Retrieve student examination result by Student ID -->
+    <xs:element name="getStudentResultRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="studentId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Response: Comprehensive academic score card -->
+    <xs:element name="getStudentResultResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="studentId" type="xs:long"/>
+                <xs:element name="studentName" type="xs:string"/>
+                <xs:element name="department" type="xs:string"/>
+                <xs:element name="semester" type="xs:int"/>
+                <xs:element name="results" type="tns:resultItem" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="totalMarks" type="xs:double"/>
+                <xs:element name="percentage" type="xs:double"/>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Complex type for individual subject score item -->
+    <xs:complexType name="resultItem">
+        <xs:sequence>
+            <xs:element name="subject" type="xs:string"/>
+            <xs:element name="marks" type="xs:double"/>
+            <xs:element name="grade" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
